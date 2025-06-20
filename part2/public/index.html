@@ -62,6 +62,7 @@
         });
 
         const result = await response.json();
+        console.log("Login response:", result); // dubbing
 
         if (result.success) {
           localStorage.setItem("isLoggedIn", "true");
