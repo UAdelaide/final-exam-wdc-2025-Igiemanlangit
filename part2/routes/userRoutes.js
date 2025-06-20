@@ -19,9 +19,9 @@ router.get('/', async (req, res) => {
   const ownerId = req.params.ownerId;
   const conn = await req.pool.getConnection();
 
-  
+
   try {
-    const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
+    const [dogs] = await conn.query (
     res.json(rows);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch users' });
