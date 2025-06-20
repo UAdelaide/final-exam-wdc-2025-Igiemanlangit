@@ -27,7 +27,9 @@ app.post('/api/login', async(req,res) => {
     );
     conn.release();
 
-    if 
+    if (users.length === 0) {
+        return res.json
+    }
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
 
