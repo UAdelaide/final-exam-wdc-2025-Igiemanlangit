@@ -6,14 +6,12 @@ var mysql = require('mysql2/promise');
 
 const app = express();
 
-// ===== Middleware =====
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'part1')));
 
-// ===== MySQL Connection =====
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -21,7 +19,6 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 });
 
-// ===== One-Time Insert Logic =====
 async function insertInitialData() {
     const conn = await pool.getConnection();
     try {
@@ -123,7 +120,6 @@ app.get('/api/walkers/summary', async (req, res) => {
     }
 });
 
-// Run insert on startup
 insertInitialData();
 
 // ===== Start Server =====
