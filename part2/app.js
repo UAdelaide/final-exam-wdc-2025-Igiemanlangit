@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 
+//added
+const pool = require('./models/db');
+
 const app = express();
 
 // Middleware
