@@ -79,7 +79,6 @@ app.get('/api/dogs', async (req, res) => {
     }
 });
 
-// ✅ 2. GET /api/walkrequests/open
 app.get('/api/walkrequests/open', async (req, res) => {
     try {
         const [rows] = await pool.query(`
@@ -91,12 +90,11 @@ app.get('/api/walkrequests/open', async (req, res) => {
       `);
         res.json(rows);
     } catch (err) {
-        console.error('❌ /api/walkrequests/open error:', err);
+        console.error(' /api/walkrequests/open error:', err);
         res.status(500).json({ error: 'Failed to fetch walk requests' });
     }
 });
 
-// ✅ 3. GET /api/walkers/summary
 app.get('/api/walkers/summary', async (req, res) => {
     try {
         const [summary] = await pool.query(`
@@ -116,7 +114,7 @@ app.get('/api/walkers/summary', async (req, res) => {
       `);
         res.json(summary);
     } catch (err) {
-        console.error('❌ /api/walkers/summary error:', err);
+        console.error(' /api/walkers/summary error:', err);
         res.status(500).json({ error: 'Failed to fetch walker summary' });
     }
 });
