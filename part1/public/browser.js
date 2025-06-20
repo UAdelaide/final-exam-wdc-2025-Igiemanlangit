@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     img.src = data.message;
                     img.style.display = 'block';
                     img.classList.add('spin');
+
+                    //disables button after successful fetch
+                    form.querySelector('button[type="submit"]').disabled = true;
                 })
                 .catch(error => console.error('Failed to fetch dog image:', error));
         } else {
