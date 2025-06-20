@@ -28,7 +28,7 @@ app.post('/api/login', async(req,res) => {
     conn.release();
 
     if (users.length === 0) {
-        return res.json
+        return res.json({success:false, message: "Invalid "})
     }
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
