@@ -60,7 +60,7 @@ async function insertInitialData() {
     `);
 
         console.log(' Initial data inserted.');
-    } //
+    } //catch and log any errors during insertion
     catch (err) {
         console.error(' Error inserting data:', err);
     } finally {
