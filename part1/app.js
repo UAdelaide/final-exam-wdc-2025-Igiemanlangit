@@ -65,8 +65,6 @@ async function insertInitialData() {
     }
 }
 
-
-// ✅ 1. GET /api/dogs
 app.get('/api/dogs', async (req, res) => {
     try {
         const [dogs] = await pool.query(`
@@ -76,7 +74,7 @@ app.get('/api/dogs', async (req, res) => {
       `);
         res.json(dogs);
     } catch (err) {
-        console.error('❌ /api/dogs error:', err);
+        console.error(' /api/dogs error:', err);
         res.status(500).json({ error: 'Failed to fetch dogs' });
     }
 });
