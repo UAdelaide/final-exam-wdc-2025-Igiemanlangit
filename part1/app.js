@@ -98,9 +98,10 @@ router.get('/dogs', async (req, res) => {
     }
   });
 
-app.get('/api/walkers/summary', async (req, res) => {
+  router.get('/walkers/summary', async (req, res) => {
     try {
-        const [summary] = await pool.query(`
+      const db = req.app.locals.db;
+      const [rows] = await db.execute(`
         SELECT u.username AS walker_username,
                COUNT(r.rating_id) AS total_ratings,
                ROUND(AVG(r.rating), 1) AS average_rating,
@@ -115,12 +116,11 @@ app.get('/api/walkers/summary', async (req, res) => {
         WHERE u.role = 'walker'
         GROUP BY u.username
       `);
-        res.json(summary);
+      res.json(rows);
     } catch (err) {
-        console.error(' /api/walkers/summary error:', err);
-        res.status(500).json({ error: 'Failed to fetch walker summary' });
+      res.status(500).json({ error: 'Failed to fetch walker/summary' });
     }
-});
+  });
 
 
 // Run insert on startup
