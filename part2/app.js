@@ -19,7 +19,9 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 //added  start --------------------------------------------------------------------------------------------------------------
-app.post('login')
+app.post('/api/login', async(req,res) => {
+    
+})
 //added  end ----------------------------------------------------------------------------------------------------------------
 
 // Export the app instead of listening here
