@@ -19,6 +19,8 @@ app.use('/api/walks', walkRoutes);
 app.use('/api/users', userRoutes);
 
 //added  start --------------------------------------------------------------------------------------------------------------
+
+//login POST route
 app.post('/api/login', async(req,res) => {
     const { email, password } = req.body;
     const conn = await pool.getConnection();
