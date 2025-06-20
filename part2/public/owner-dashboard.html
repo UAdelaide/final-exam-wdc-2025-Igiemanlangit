@@ -120,15 +120,6 @@
         //using onwerId is stored at login
         const userId = localStorage.getItem("userId");
 
-        async function loadMyDogs() {
-          try {
-            const res = await fetch(`/api/users/dogs/${userId}`);
-            if (!res.ok) throw new Error("Failed to fetch your dogs");
-            myDogs.value = await res.json();
-          } catch (err) {
-            console.error(err);
-          }
-        }
 
         async function loadWalks() {
           try {
