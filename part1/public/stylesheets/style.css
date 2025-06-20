@@ -7,7 +7,11 @@ a {
   color: #00B7FF;
 }
 
-.image-spin
-{
-  from { transform }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#goodboy.spin {
+  animation: spin 2s linear infinite;
 }
