@@ -56,4 +56,18 @@ router.get('/me', (req, res) => {
 //   }
 // });
 
+router.get('/dogs/:ownerId', async (req, res) => {
+  const ownerId = req.params.ownerId;
+
+  try {
+    const [dogs] = await db.query(
+      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
+    );
+    res.json(dogs);
+  } catch (error) {
+    console.error('Failed to fetch dogs:', error);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
 module.exports = router;
