@@ -65,7 +65,6 @@ async function insertInitialData() {
     }
 }
 
-// ✅ FIXED: use app.get instead of router.get
 app.get('/api/dogs', async (req, res) => {
     try {
         const conn = await pool.getConnection();
