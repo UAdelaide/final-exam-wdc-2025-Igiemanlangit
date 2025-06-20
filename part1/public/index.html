@@ -9,5 +9,22 @@
     <h1>Express</h1>
     <p>Welcome to Express</p>
     <img src="pic_trulli.jpg" alt="Italian Trulli">
+
+
+
+
+    <script>
+        // Your API URL
+        const apiUrl = 'https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=Paris';
+
+        // Fetch the weather data
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('weather').innerText = `The current temperature in Paris is ${data.current.temp_c}°C`;
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+    
 </body>
 </html>
