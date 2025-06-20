@@ -32,4 +32,3 @@ document.addEventListener('DOMContentLoaded', function () {
         index = (index + 1) % colors.length;
     }, 300); // Change every 1.5 seconds
 });
-});
