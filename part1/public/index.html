@@ -27,23 +27,6 @@
         <button class="button1" type="button">Click Me!</button>
     </div>
 
-    <script>
-        <script src="apps.js"></script>
-
-
-        // Your API URL
-        const apiUrl = 'https://dog.ceo/api/breeds/image/random';
-
-        // Fetch the weather data
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('goodboy').src = data.message;
-            })
-            .catch(error => console.error('did not work', error));
-
-
-    </script>
 
 </body>
 </html>
