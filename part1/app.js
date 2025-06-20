@@ -63,7 +63,7 @@ async function insertInitialData() {
     } //catch and log any errors during insertion
     catch (err) {
         console.error(' Error inserting data:', err);
-    } //always release back to the pool to avoid 
+    } //always release back to the pool to avoid resource leaks
     finally {
         conn.release();
     }
