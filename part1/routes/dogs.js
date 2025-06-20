@@ -1,7 +1,7 @@
 //question 6 dog call
 const express = require('express');
 const router = express.Router();
-const db = require('../db'); // make sure db.js exports MySQL connection
+const db = require('../db');
 
 // GET /api/dogs - List all dogs
 router.get('/', async (req, res) => {
