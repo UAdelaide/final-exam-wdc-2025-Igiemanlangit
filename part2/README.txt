@@ -1,5 +1,7 @@
 mysql -u root -p
 
+SHOW databases;
+
 SELECT * FROM Users;
 
 
