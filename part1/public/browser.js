@@ -1,13 +1,26 @@
 
 //for the dog image to load
 document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('multistep');
     const img = document.getElementById('goodboy');
 
-    fetch('https://dog.ceo/api/breeds/image/random')
-        .then(response => response.json())
-        .then(data => {
-            img.src = data.message;
-            img.style.display = 'block';
-        })
-        .catch(error => console.error('Failed to fetch dog image:', error));
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const step1 = document.getElementById('step1').checked;
+        const step2 = document.getElementById('step2').checked;
+        const step3 = document.getElementById('step3').checked;
+
+        if (step1 && step2 && step3) {
+            fetch('https://dog.ceo/api/breeds/image/random')
+                .then(response => response.json())
+                .then(data => {
+                    img.src = data.message;
+                    img.style.display = 'block';
+                })
+                .catch(error => console.error('Failed to fetch dog image:', error));
+        } else {
+            alert("Please complete all steps before fetching the good boy!");
+        }
+    });
 });
