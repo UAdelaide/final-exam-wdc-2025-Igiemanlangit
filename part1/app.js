@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // ===== MySQL Connection =====
 const pool = mysql.createPool({
   host: 'localhost',
-  user: 'your_mysql_user',     // ✅ Replace with your MySQL username
+  user: 'root',     // ✅ Replace with your MySQL username
   password: '',   // ✅ Replace with your MySQL password
   database: 'DogWalkService'
 });
