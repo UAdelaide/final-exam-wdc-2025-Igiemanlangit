@@ -15,6 +15,8 @@ router.get('/', async (req, res) => {
 
 //get dogs for specific owners
 router.get('/', async (req, res) => {
+
+  const ownerId
   try {
     const [rows] = await db.query('SELECT user_id, username, email, role FROM Users');
     res.json(rows);
