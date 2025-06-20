@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        //
         const step1 = document.getElementById('step1').checked;
         const step2 = document.getElementById('step2').checked;
         const step3 = document.getElementById('step3').checked;
