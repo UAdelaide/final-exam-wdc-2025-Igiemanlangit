@@ -21,7 +21,8 @@ app.use('/api/users', userRoutes);
 //added  start --------------------------------------------------------------------------------------------------------------
 app.post('/api/login', async(req,res) => {
     const { email, password } = req.body;
-    const conn = await pool.
+    const conn = await pool.getConnection();
+    const [users] = await conn.query
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
 
