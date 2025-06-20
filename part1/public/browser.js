@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        //
         const step1 = document.getElementById('step1').checked;
         const step2 = document.getElementById('step2').checked;
         const step3 = document.getElementById('step3').checked;
 
+
+        //ensures boxes are ticked before click
         if (step1 && step2 && step3) {
             fetch('https://dog.ceo/api/breeds/image/random')
                 .then(response => response.json())
