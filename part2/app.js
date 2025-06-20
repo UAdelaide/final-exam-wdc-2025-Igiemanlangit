@@ -42,6 +42,9 @@ app.post('/api/login', async(req,res) => {
     const user = users[0];
     res.json({ success: true, role: user.role });
 });
+
+
+
 //added  end ----------------------------------------------------------------------------------------------------------------
 
 // Export the app instead of listening here
