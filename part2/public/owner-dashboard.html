@@ -106,7 +106,8 @@
         //allows new state to hold dogs
         const myDogs = ref([]);
 
-        //using onwerId
+        //using onwerId is stored at login
+        const userId = localStorage.getItem("userId");
 
         async function loadWalks() {
           try {
