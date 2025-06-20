@@ -2,6 +2,8 @@ mysql -u root -p
 
 SHOW databases;
 
+USE DogWalkService;
+
 SELECT * FROM Users;
 
 
