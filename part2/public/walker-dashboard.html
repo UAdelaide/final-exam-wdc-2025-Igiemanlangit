@@ -35,6 +35,14 @@
     <p v-else>No available walk requests at the moment.</p>
   </div>
 
+  <div class="form-container">
+    <form id="loginForm">
+      <input type="email" placeholder="Email Address" id="loginEmail" required>
+      <input type="password" placeholder="Password" id="loginPassword" required>
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+
   <script>
     const { createApp, ref, onMounted } = Vue;
 
