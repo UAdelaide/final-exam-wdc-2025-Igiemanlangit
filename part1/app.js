@@ -124,7 +124,7 @@ app.get('/api/walkers/summary', async (req, res) => {
 insertInitialData();
 
 // ===== Start Server =====
-//runnning on 3001 because 3000 is currently used for group project and unsure to 
+//runnning on 3001 because 3000 is currently used for group project and unsure to delete during exams
 app.listen(3001, () => {
     console.log('Server running on http://localhost:3001');
 });
