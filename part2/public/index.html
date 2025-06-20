@@ -64,12 +64,13 @@
         const result = await response.json();
 
         if (result.success) {
-          if (result.role === "owner") {
-            window.location.href = "owner-dashboard.html";
-          } else if (result.role === "walker") {
-            window.location.href = "walker-dashboard.html";
-          }
-        } else {
+  localStorage.setItem("userId", result.user_id);
+  if (result.role === "owner") {
+    window.location.href = "owner-dashboard.html";
+  } else if (result.role === "walker") {
+    window.location.href = "walker-dashboard.html";
+  }
+} else {
           alert(result.message || "Invalid email or password.");
         }
       } catch (err) {
