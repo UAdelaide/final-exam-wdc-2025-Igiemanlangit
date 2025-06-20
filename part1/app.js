@@ -135,7 +135,7 @@ document.getElementById('multistep').addEventListener('submit', function(e) {
             .then(data => {
                 const img = document.getElementById('goodboy');
                 img.src = data.message;
-                img.style.display = 'block';
+                img.style.display = 'block'; // Show the image
             })
             .catch(error => console.error('Failed to fetch dog image:', error));
     } else {
