@@ -23,4 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("Please complete all steps before fetching the good boy!");
         }
     });
+
+
+    const colors = ['#ffcccb', '#d0f0c0', '#add8e6', '#fffacd', '#e0bbff'];
+    let index = 0;
+    setInterval(() => {
+        document.body.style.backgroundColor = colors[index];
+        index = (index + 1) % colors.length;
+    }, 300); // Change every 1.5 seconds
+});
 });
