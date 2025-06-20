@@ -146,18 +146,15 @@ app.get('/api/walkers/summary', async (req, res) => {
 // });
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('multistep').addEventListener('submit', function (e) {
-        e.preventDefault();
+    const img = document.getElementById('goodboy');
 
-        fetch('https://dog.ceo/api/breeds/image/random')
-            .then(response => response.json())
-            .then(data => {
-                const img = document.getElementById('goodboy');
-                img.src = data.message;
-                img.style.display = 'block';
-            })
-            .catch(error => console.error('Failed to fetch dog image:', error));
-    });
+    fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => response.json())
+        .then(data => {
+            img.src = data.message;
+            img.style.display = 'block';
+        })
+        .catch(error => console.error('Failed to fetch dog image:', error));
 });
 
 
