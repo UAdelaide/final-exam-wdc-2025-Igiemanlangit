@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const step3 = document.getElementById('step3').checked;
 
 
-        //ensures boxes are ticked before click
+        //ensures boxes are ticked before button
         if (step1 && step2 && step3) {
             fetch('https://dog.ceo/api/breeds/image/random')
                 .then(response => response.json())
@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-
+    //random background colour
     const colors = ['#ffcccb', '#d0f0c0', '#add8e6', '#fffacd', '#e0bbff'];
     let index = 0;
     setInterval(() => {
         document.body.style.backgroundColor = colors[index];
         index = (index + 1) % colors.length;
-    }, 300); // Change every 1.5 seconds
+    }, 300);
 });
