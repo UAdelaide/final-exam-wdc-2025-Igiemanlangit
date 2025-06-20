@@ -40,7 +40,7 @@ app.post('/api/login', async(req,res) => {
     }
 
     const user = users[0];
-    res.json({ success: true, role: user.role, userid: user.user_id });
+    res.json({ success: true, role: user.role, user_id: user.user_id });
 });
 
 // app.get('/api/users/dogs/:ownerId', async (req, res) => {
