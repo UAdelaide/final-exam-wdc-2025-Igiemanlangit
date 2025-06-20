@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
   try {
     const [dogs] = await conn.query (
-    'SELECT dog_id, name FROM dogs'
+    'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerID]
 });
 
 
