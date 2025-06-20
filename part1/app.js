@@ -103,19 +103,19 @@ app.get('/api/walkers/summary', async (req, res) => {
     try {
         const conn = await pool.getConnection();
         const [rows] = await conn.execute(`
-            SELECT username AS walker_username,
-                   COUNT(r.rating_id) AS total_ratings,
-                   ROUND(AVG(r.rating), 1) AS average_rating,
-                   (
-                     SELECT COUNT(*)
-                     FROM WalkApplications wa
-                     JOIN WalkRequests wr ON wa.request_id = wr.request_id
-                     WHERE wa.walker_id = Users.user_id AND wr.status = 'completed'
-                   ) AS completed_walks
-            FROM Users
-            LEFT JOIN WalkRatings r ON Users.user_id = r.walker_id
-            WHERE role = 'walker'
-            GROUP BY username
+        SELECT Users.username,
+        COUNT(WalkRatings.rating_id),
+        ROUND(AVG(WalkRatings.rating), 1),
+        (
+          SELECT COUNT(*)
+          FROM WalkApplications
+          JOIN WalkRequests ON WalkApplications.request_id = WalkRequests.request_id
+          WHERE WalkApplications.walker_id = Users.user_id AND WalkRequests.status = 'completed'
+        )
+ FROM Users
+ LEFT JOIN WalkRatings ON Users.user_id = WalkRatings.walker_id
+ WHERE Users.role = 'walker'
+ GROUP BY Users.username;
         `);
         conn.release();
         res.json(rows);
