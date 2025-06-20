@@ -119,6 +119,21 @@
           return;
         }
 
+        //testing
+        async function loadDogs() {
+          try {
+            // fetches the dog data
+            const res = await fetch('/api/users/dogs');
+            if (res.ok) {
+              dogs.value = await res.json();
+            } else {
+              error.value = 'Failed to load dog names';
+            }
+          } catch (err) {
+            error.value = 'Error fetching';
+          }
+        }
+
 
         async function loadWalks() {
           try {
