@@ -36,5 +36,5 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(() => {
         document.body.style.backgroundColor = colors[index];
         index = (index + 1) % colors.length;
-    }, 300);
+    }, 300); //change is every 0.3 seconds party
 });
