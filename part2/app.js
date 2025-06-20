@@ -29,7 +29,7 @@ app.post('/api/login', async(req,res) => {
     //ask mysql connection pool to give us connection to talk to database
     const conn = await pool.getConnection();
 
-    //checks if theres a user with 
+    //checks if theres a user with email and password matching
     const [users] = await conn.query(
         'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
     );
