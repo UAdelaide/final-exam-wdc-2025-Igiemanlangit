@@ -31,7 +31,7 @@ app.post('/api/login', async(req,res) => {
         return res.json({success:false, message: "doesnt exists in database"});
     }
 
-    const user = user[0];
+    const user = users[0];
     res.json({ success: true, role: user.role });
 });
 //added  end ----------------------------------------------------------------------------------------------------------------
