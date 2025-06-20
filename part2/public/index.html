@@ -39,10 +39,9 @@
       }
     }).mount('#app');
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const loginForm = document.getElementById("loginForm");
+    const loginForm = document.getElementById("loginForm");
 
-      loginForm.addEventListener("submit", async function (e) {
+    loginForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const email = document.getElementById("loginEmail").value.trim();
@@ -58,7 +57,6 @@
         const result = await response.json();
 
         if (result.success) {
-
           if (result.role === "owner") {
             window.location.href = "owner-dashboard.html";
           } else if (result.role === "walker") {
@@ -72,8 +70,6 @@
         alert("An error occurred during login.");
       }
     });
-  });
-
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
