@@ -107,7 +107,7 @@ app.get('/api/walkrequests/open', async (req, res) => {
 });
 
 
-//
+//route to get a summary of each walker -- number of ratings, average rating, and completed walks
 app.get('/api/walkers/summary', async (req, res) => {
     try {
         const conn = await pool.getConnection();
