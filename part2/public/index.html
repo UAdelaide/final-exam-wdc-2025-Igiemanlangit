@@ -64,6 +64,7 @@
         const result = await response.json();
 
         if (result.success) {
+          localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("userId", result.user_id);
           if (result.role === "owner") {
             window.location.href = "owner-dashboard.html";
