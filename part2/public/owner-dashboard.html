@@ -25,12 +25,14 @@
 
 
 
-          question 15
+          <!-- question 15 -->
           <div class="mb-3">
-            <label class="form-label">Choose your dog </label>
+            <label class="form-label">Select Your Dog</label>
             <select v-model="form.dog_id" class="form-select" required>
-              <option disabled value=""> whats your dog </option>
-              <option v-for="dogs in the database" :value="dog.dog_id">{{ dog.name }}</option>
+              <option disabled value="">-- Choose a dog --</option>
+              <option v-for="dog in myDogs" :key="dog.dog_id" :value="dog.dog_id">
+                {{ dog.name }}
+              </option>
             </select>
           </div>
 
