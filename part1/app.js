@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql2/promise');
 
-const app = express(); // ✅ using app
+const app = express();
 
 // ===== Middleware =====
 app.use(logger('dev'));
