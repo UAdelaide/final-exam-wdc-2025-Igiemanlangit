@@ -70,7 +70,7 @@ async function insertInitialData() {
 }
 
 
-//route to get all dogs and their 
+//route to get all dogs and their owner's usernames
 app.get('/api/dogs', async (req, res) => {
     try {
         const conn = await pool.getConnection();
@@ -86,6 +86,8 @@ app.get('/api/dogs', async (req, res) => {
     }
 });
 
+
+//route to get all open walk 
 app.get('/api/walkrequests/open', async (req, res) => {
     try {
         const conn = await pool.getConnection();
