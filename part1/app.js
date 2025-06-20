@@ -58,9 +58,10 @@ async function insertInitialData() {
       ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 11:30:00', 10, 'medium Ave', 'completed'),
       ((SELECT dog_id FROM Dogs WHERE name = 'Bella'), '2025-06-10 12:30:00', 15, 'long Ave', 'cancelled');
     `);
-        
+
         console.log(' Initial data inserted.');
-    } catch (err) {
+    } //
+    catch (err) {
         console.error(' Error inserting data:', err);
     } finally {
         conn.release();
