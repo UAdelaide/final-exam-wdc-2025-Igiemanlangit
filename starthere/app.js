@@ -60,6 +60,7 @@ let db;
 
 // Route to return books as JSON
 app.get('/', async (req, res) => {
+  console.log('running / route')
   try {
     const [books] = await db.execute('SELECT * FROM books');
     res.json(books);
