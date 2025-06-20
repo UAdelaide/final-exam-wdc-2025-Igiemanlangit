@@ -110,19 +110,12 @@
         //added
         const myDogs = ref([]);
 
-        userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("userId");
         if (!userId) {
           alert("Please log in again");
           window.location.href = "index.html";
           return;
         }
-
-
-        //allows new state to hold dogs
-        const myDogs = ref([]);
-
-        //using onwerId is stored at login
-        const userId = localStorage.getItem("userId");
 
 
         async function loadWalks() {
