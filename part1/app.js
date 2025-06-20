@@ -27,7 +27,7 @@ const pool = mysql.createPool({
 async function insertInitialData() {
     const conn = await pool.getConnection();
     try {
-        //insers to Users
+        //insers to Users if they dont already exists
         await conn.query(`
       INSERT IGNORE INTO Users (username, email, password_hash, role) VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -37,7 +37,7 @@ async function insertInitialData() {
       ('ewalker', 'e@example.com', 'hashed258', 'walker');
     `);
 
-        //inserts to Dogs
+        //inserts to Dogs if they dont already exists
         await conn.query(`
       INSERT IGNORE INTO Dogs (name, size, owner_id)
       VALUES
@@ -48,7 +48,7 @@ async function insertInitialData() {
       ('arol', 'large', (SELECT user_id FROM Users WHERE username = 'carol123'));
     `);
 
-        //inserts to WalkerRequests
+        //inserts to WalkerRequests if they dont already exists
         await conn.query(`
       INSERT IGNORE INTO WalkRequests (dog_id, requested_time, duration_minutes, location, status)
       VALUES
