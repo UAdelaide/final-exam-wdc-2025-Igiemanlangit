@@ -69,6 +69,8 @@ async function insertInitialData() {
     }
 }
 
+
+//route to get all dogs and their 
 app.get('/api/dogs', async (req, res) => {
     try {
         const conn = await pool.getConnection();
