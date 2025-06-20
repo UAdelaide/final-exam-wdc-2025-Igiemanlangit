@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     img.src = data.message;
                     img.style.display = 'block';
+                    img.classList.add('spin');
                 })
                 .catch(error => console.error('Failed to fetch dog image:', error));
         } else {
