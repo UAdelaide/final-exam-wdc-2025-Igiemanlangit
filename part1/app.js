@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'part1')));
 
-//
+//creates a connection pool for the MSQL database
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -22,6 +22,8 @@ const pool = mysql.createPool({
     database: 'DogWalkService'
 });
 
+
+//
 async function insertInitialData() {
     const conn = await pool.getConnection();
     try {
