@@ -26,7 +26,7 @@ app.post('/api/login', async(req,res) => {
     //get email and password from webpage
     const { email, password } = req.body;
 
-    //ask mysql 
+    //ask mysql connection pool to give us connection to talk to database
     const conn = await pool.getConnection();
     const [users] = await conn.query(
         'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
