@@ -14,21 +14,16 @@ router.get('/', async (req, res) => {
 
 
 //get dogs for specific owners
-router.get('/', async (req, res) => {
-
+router.get('/dogs/:ownerId', async (req, res) => {
   const ownerId = req.params.ownerId;
-  const conn = await req.pool.getConnection();
-
 
   try {
-    const [dogs] = await conn.query (
-    'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
+    const [dogs] = await db.query(
+      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
     );
     res.json(dogs);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch dogs' });
-  } finally {
-    conn.release();
   }
 });
 
