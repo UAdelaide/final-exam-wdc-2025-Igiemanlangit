@@ -1,5 +1,5 @@
 
-
+//for the dog image to load
 document.addEventListener('DOMContentLoaded', function () {
     const img = document.getElementById('goodboy');
 
