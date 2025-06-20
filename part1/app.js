@@ -122,8 +122,8 @@ app.get('/api/walkers/summary', async (req, res) => {
 
 insertInitialData();
 
-app.listen(3001, () => {
-    console.log('Server running on http://localhost:3001');
+app.listen(8080, () => {
+    console.log('Server running on http://localhost:8080');
 });
 
 module.exports = app;
