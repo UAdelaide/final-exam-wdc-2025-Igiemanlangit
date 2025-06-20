@@ -12,6 +12,6 @@ a {
   to { transform: rotate(360deg); }
 }
 
-#goodboy.spin {
+.goodboy.spin {
   animation: spin 2s linear infinite;
 }
