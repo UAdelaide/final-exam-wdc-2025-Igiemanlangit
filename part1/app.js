@@ -81,7 +81,7 @@ app.get('/api/dogs', async (req, res) => {
     }
 });
 
-app.get('/walkrequests/open', async (req, res) => {
+app.get('/api/walkrequests/open', async (req, res) => {
     try {
         const conn = await pool.getConnection();
         const [rows] = await conn.execute(`
@@ -99,7 +99,7 @@ app.get('/walkrequests/open', async (req, res) => {
     }
 });
 
-app.get('/walkers/summary', async (req, res) => {
+app.get('/api/walkers/summary', async (req, res) => {
     try {
         const conn = await pool.getConnection();
         const [rows] = await conn.execute(`
