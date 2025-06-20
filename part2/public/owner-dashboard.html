@@ -106,6 +106,8 @@
         //allows new state to hold dogs
         const myDogs = ref([]);
 
+        //using onwerId
+
         async function loadWalks() {
           try {
             const res = await fetch('/api/walks');
