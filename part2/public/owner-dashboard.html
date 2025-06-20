@@ -167,7 +167,6 @@
 
         onMounted(() => {
           loadWalks();
-          loadMyDogs();
         });
 
         return {
@@ -176,7 +175,6 @@
           message,
           error,
           submitWalkRequest,
-          myDogs
         };
       }
     }).mount('#app');
