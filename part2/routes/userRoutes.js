@@ -22,7 +22,12 @@ router.get('/', async (req, res) => {
 
   try {
     const [dogs] = await conn.query (
-    'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerID]
+    'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
+    );
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
 });
 
 
