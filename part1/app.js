@@ -87,7 +87,7 @@ app.get('/api/dogs', async (req, res) => {
 });
 
 
-//route to get all open walk 
+//route to get all open walk requests with dog and owner info
 app.get('/api/walkrequests/open', async (req, res) => {
     try {
         const conn = await pool.getConnection();
@@ -106,6 +106,8 @@ app.get('/api/walkrequests/open', async (req, res) => {
     }
 });
 
+
+//
 app.get('/api/walkers/summary', async (req, res) => {
     try {
         const conn = await pool.getConnection();
