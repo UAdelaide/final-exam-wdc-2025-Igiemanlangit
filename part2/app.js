@@ -43,16 +43,6 @@ app.post('/api/login', async(req,res) => {
     res.json({ success: true, role: user.role });
 });
 
-app.get('/api/users/dogs/:ownerId', async (req, res) => {
-    const ownerId = req.params.ownerId;
-    const conn = await pool.getConnection();
-    const [dogs] = await conn.query(
-      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
-    );
-    conn.release();
-    res.json(dogs);
-  });
-
 
 //added  end ----------------------------------------------------------------------------------------------------------------
 

@@ -13,24 +13,6 @@ router.get('/', async (req, res) => {
 });
 
 
-//get dogs for specific owners
-router.get('/dogs/:ownerId', async (req, res) => {
-  const ownerId = req.params.ownerId;
-  console.log("Fetching dogs for ownerId:", ownerId); // log incoming ownerId
-
-  try {
-    const [dogs] = await db.query(
-      'SELECT dog_id, name FROM Dogs WHERE owner_id = ?', [ownerId]
-    );
-    console.log("Dogs found:", dogs); // log what comes back
-    res.json(dogs);
-  } catch (error) {
-    console.error("Error fetching dogs:", error); // log error
-    res.status(500).json({ error: 'Failed to fetch dogs' });
-  }
-});
-
-
 // POST a new user (simple signup)
 router.post('/register', async (req, res) => {
   const { username, email, password, role } = req.body;
