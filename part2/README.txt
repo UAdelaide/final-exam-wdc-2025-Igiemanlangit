@@ -4,6 +4,8 @@ SHOW databases;
 
 USE DogWalkService;
 
+SHOW table;
+
 SELECT * FROM Users;
 
 
