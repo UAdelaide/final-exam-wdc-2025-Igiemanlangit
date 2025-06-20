@@ -155,7 +155,7 @@ section {
     display: none;
 }
 
-login
+/* login */
 .form-container {
     max-width: 300px;
     margin: 0 auto;
@@ -164,3 +164,6 @@ login
     border-radius: 10px;
     text-align: center;
 }
+
+logout button
+.button-logout
