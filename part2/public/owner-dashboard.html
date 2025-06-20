@@ -94,12 +94,7 @@
 
     createApp({
 
-      const userId = localStorage.getItem("userId");
-      if(!userId) {
-        alert("Please log in again");
-        window.location.href = "index.html";
-        return;
-      }
+
       setup() {
         const form = ref({
           dog_id: '',
@@ -107,6 +102,13 @@
           duration_minutes: '',
           location: ''
         });
+
+        const userId = localStorage.getItem("userId");
+        if (!userId) {
+          alert("Please log in again");
+          window.location.href = "index.html";
+          return;
+        }
 
         const walks = ref([]);
         const message = ref('');
