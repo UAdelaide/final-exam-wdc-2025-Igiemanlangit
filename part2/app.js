@@ -22,6 +22,8 @@ app.use('/api/users', userRoutes);
 
 //login POST route
 app.post('/api/login', async(req,res) => {
+
+    //get email and password 
     const { email, password } = req.body;
     const conn = await pool.getConnection();
     const [users] = await conn.query(
