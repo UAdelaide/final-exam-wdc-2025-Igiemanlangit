@@ -66,7 +66,7 @@
 
         if (result.success) {
           localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userId", result.userId);
+          localStorage.setItem("userId", result.user_id);
           if (result.role === "owner") {
             window.location.href = "owner-dashboard.html";
           } else if (result.role === "walker") {
