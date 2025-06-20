@@ -25,6 +25,9 @@ app.post('/api/login', async(req,res) => {
     const [users] = await conn.query(
         'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
     );
+    conn.release();
+
+    if 
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
 
