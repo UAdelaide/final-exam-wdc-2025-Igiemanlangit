@@ -24,8 +24,7 @@ app.post('/api/login', async(req,res) => {
     const conn = await pool.getConnection();
     const [users] = await conn.query(
         'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
-
-    )
+    );
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
 
