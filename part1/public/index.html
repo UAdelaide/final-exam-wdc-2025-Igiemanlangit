@@ -21,7 +21,7 @@
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                document.getElementById('goodboy').innerText = `The current temperature in Paris is ${data.current.temp_c}°C`;
+                document.getElementById('goodboy').src = data.message;
             })
             .catch(error => console.error('Error:', error));
     </script>
