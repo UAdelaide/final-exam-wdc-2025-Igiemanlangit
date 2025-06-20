@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require('mysql2/promise');
 
-const app = express();
+const app = express(); // ✅ using app
 
 // ===== Middleware =====
 app.use(logger('dev'));
@@ -65,73 +65,71 @@ async function insertInitialData() {
     }
 }
 
-router.get('/dogs', async (req, res) => {
+// ✅ FIXED: use app.get instead of router.get
+app.get('/dogs', async (req, res) => {
     try {
-      const db = req.app.locals.db;
-      const [rows] = await db.execute(`
-        SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username
-        FROM Dogs
-        JOIN Users ON Dogs.owner_id = Users.user_id
-      `);
-      res.json(rows);
+        const conn = await pool.getConnection();
+        const [rows] = await conn.execute(`
+            SELECT Dogs.name AS dog_name, Dogs.size, Users.username AS owner_username
+            FROM Dogs
+            JOIN Users ON Dogs.owner_id = Users.user_id
+        `);
+        conn.release();
+        res.json(rows);
     } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch dogs' });
+        res.status(500).json({ error: 'Failed to fetch dogs' });
     }
-  });
+});
 
-
-
-  router.get('/walkrequests/open', async (req, res) => {
+app.get('/walkrequests/open', async (req, res) => {
     try {
-      const db = req.app.locals.db;
-      const [rows] = await db.execute(`
-        SELECT WalkRequests.request_id, Dogs.name AS dog_name, WalkRequests.requested_time,
-               WalkRequests.duration_minutes, WalkRequests.location, Users.username AS owner_username
-        FROM WalkRequests
-        JOIN Dogs ON WalkRequests.dog_id = Dogs.dog_id
-        JOIN Users ON Dogs.owner_id = Users.user_id
-        WHERE WalkRequests.status = 'open'
-      `);
-      res.json(rows);
+        const conn = await pool.getConnection();
+        const [rows] = await conn.execute(`
+            SELECT WalkRequests.request_id, Dogs.name AS dog_name, WalkRequests.requested_time,
+                   WalkRequests.duration_minutes, WalkRequests.location, Users.username AS owner_username
+            FROM WalkRequests
+            JOIN Dogs ON WalkRequests.dog_id = Dogs.dog_id
+            JOIN Users ON Dogs.owner_id = Users.user_id
+            WHERE WalkRequests.status = 'open'
+        `);
+        conn.release();
+        res.json(rows);
     } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch walkrequests/open' });
+        res.status(500).json({ error: 'Failed to fetch walkrequests/open' });
     }
-  });
+});
 
-  router.get('/walkers/summary', async (req, res) => {
+app.get('/walkers/summary', async (req, res) => {
     try {
-      const db = req.app.locals.db;
-      const [rows] = await db.execute(`
-        SELECT username AS walker_username,
-               COUNT(r.rating_id) AS total_ratings,
-               ROUND(AVG(r.rating), 1) AS average_rating,
-               (
-                 SELECT COUNT(*)
-                 FROM WalkApplications wa
-                 JOIN WalkRequests wr ON wa.request_id = wr.request_id
-                 WHERE wa.walker_id = Users.user_id AND wr.status = 'completed'
-               ) AS completed_walks
-        FROM Users
-        LEFT JOIN WalkRatings r ON Users.user_id = r.walker_id
-        WHERE role = 'walker'
-        GROUP BY username
-      `);
-      res.json(rows);
+        const conn = await pool.getConnection();
+        const [rows] = await conn.execute(`
+            SELECT username AS walker_username,
+                   COUNT(r.rating_id) AS total_ratings,
+                   ROUND(AVG(r.rating), 1) AS average_rating,
+                   (
+                     SELECT COUNT(*)
+                     FROM WalkApplications wa
+                     JOIN WalkRequests wr ON wa.request_id = wr.request_id
+                     WHERE wa.walker_id = Users.user_id AND wr.status = 'completed'
+                   ) AS completed_walks
+            FROM Users
+            LEFT JOIN WalkRatings r ON Users.user_id = r.walker_id
+            WHERE role = 'walker'
+            GROUP BY username
+        `);
+        conn.release();
+        res.json(rows);
     } catch (err) {
-      res.status(500).json({ error: 'Failed to fetch walker/summary' });
+        res.status(500).json({ error: 'Failed to fetch walker/summary' });
     }
-  });
-
+});
 
 // Run insert on startup
 insertInitialData();
 
 // ===== Start Server =====
-//runnning on 3001 because 3000 is currently used for group project and unsure to delete during exams
 app.listen(3001, () => {
     console.log('Server running on http://localhost:3001');
 });
-
-
 
 module.exports = app;
