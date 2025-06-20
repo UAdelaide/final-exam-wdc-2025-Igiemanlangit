@@ -103,6 +103,10 @@
           location: ''
         });
 
+        const walks = ref([]);
+        const message = ref('');
+        const error = ref('');
+        
         userId = localStorage.getItem("userId");
         if (!userId) {
           alert("Please log in again");
