@@ -93,6 +93,13 @@
     const { createApp, ref, onMounted } = Vue;
 
     createApp({
+
+      const userId = localStorage.getItem("userId");
+      if(!userId) {
+        alert("Please log in again");
+        window.location.href = "index.html";
+        return;
+      }
       setup() {
         const form = ref({
           dog_id: '',
