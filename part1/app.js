@@ -23,11 +23,11 @@ const pool = mysql.createPool({
 });
 
 
-//
+//functions to insert data
 async function insertInitialData() {
     const conn = await pool.getConnection();
     try {
-        // Insert Users
+        //insers to users
         await conn.query(`
       INSERT IGNORE INTO Users (username, email, password_hash, role) VALUES
       ('alice123', 'alice@example.com', 'hashed123', 'owner'),
@@ -37,7 +37,7 @@ async function insertInitialData() {
       ('ewalker', 'e@example.com', 'hashed258', 'walker');
     `);
 
-        // Insert Dogs
+        //inserts to dogs
         await conn.query(`
       INSERT IGNORE INTO Dogs (name, size, owner_id)
       VALUES
