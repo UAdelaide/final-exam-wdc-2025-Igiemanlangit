@@ -22,7 +22,10 @@ app.use('/api/users', userRoutes);
 app.post('/api/login', async(req,res) => {
     const { email, password } = req.body;
     const conn = await pool.getConnection();
-    const [users] = await conn.query
+    const [users] = await conn.query(
+        'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
+
+    )
 })
 //added  end ----------------------------------------------------------------------------------------------------------------
 
