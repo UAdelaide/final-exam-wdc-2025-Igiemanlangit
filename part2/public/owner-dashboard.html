@@ -111,6 +111,7 @@
         const myDogs = ref([]);
 
         const userId = localStorage.getItem("userId");
+        console.log("User ID:", userId); //debugging
         if (!userId) {
           alert("Please log in again");
           window.location.href = "index.html";
