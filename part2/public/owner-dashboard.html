@@ -106,7 +106,10 @@
         const walks = ref([]);
         const message = ref('');
         const error = ref('');
-        
+
+        //added
+        const myDogs = ref([]);
+
         userId = localStorage.getItem("userId");
         if (!userId) {
           alert("Please log in again");
@@ -114,9 +117,6 @@
           return;
         }
 
-        const walks = ref([]);
-        const message = ref('');
-        const error = ref('');
 
         //allows new state to hold dogs
         const myDogs = ref([]);
