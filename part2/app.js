@@ -36,15 +36,15 @@ app.use('/api/users', userRoutes);
 //login POST route
 app.post('/api/login', async(req,res) => {
 
-    //get email and password from webpage
-    const { email, password } = req.body;
+    //get username and password from webpage
+    const { username, password } = req.body;
 
     //ask mysql connection pool to give us connection to talk to database
     const conn = await pool.getConnection();
 
-    //checks if theres a user with email and password matching
+    //checks if theres a user with username and password matching
     const [users] = await conn.query(
-        'SELECT * FROM Users WHERE email = ? AND password_hash = ?', [email,password]
+        'SELECT * FROM Users WHERE username = ? AND password_hash = ?', [username,password]
     );
     conn.release();
 
