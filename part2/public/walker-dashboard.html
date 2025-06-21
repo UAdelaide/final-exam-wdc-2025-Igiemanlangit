@@ -67,6 +67,7 @@
             walkerId.value = user.user_id;
           } catch (err) {
             console.error("failed to get current user", err);
+            error.value = 'try logging in again';
             
           }
         }
