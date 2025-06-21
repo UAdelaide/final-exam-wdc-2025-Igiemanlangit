@@ -61,7 +61,10 @@
               credentials: 'include'
             });
 
-            if(!res.ok) throw new Error('user is not logged in')
+            if(!res.ok) throw new Error('user is not logged in');
+
+            const user = await res.json();
+            walkerId.value
 
           }
         }
