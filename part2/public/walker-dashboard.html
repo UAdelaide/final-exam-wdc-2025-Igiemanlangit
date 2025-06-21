@@ -104,7 +104,7 @@
         }
 
         onMounted(() => {
-          getCurrentuser();
+          getCurrentUser();
           loadWalkRequests();
         });
 
@@ -112,7 +112,8 @@
           walks,
           message,
           error,
-          applyToWalk
+          applyToWalk,
+          walkerId
         };
       }
     }).mount('#app');
