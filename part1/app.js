@@ -139,4 +139,6 @@ app.listen(3001, () => {
     console.log('Server running on http://localhost:3001');
 });
 
+//was working until I switched to different folder and 
+
 module.exports = app;
