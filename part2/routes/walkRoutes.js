@@ -35,30 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// // POST an application to walk a dog (from walker)
-// router.post('/:id/apply', async (req, res) => {
-//   const requestId = req.params.id;
-//   const { walker_id } = req.body;
-
-//   try {
-//     await db.query(`
-//       INSERT INTO WalkApplications (request_id, walker_id)
-//       VALUES (?, ?)
-//     `, [requestId, walker_id]);
-
-//     await db.query(`
-//       UPDATE WalkRequests
-//       SET status = 'accepted'
-//       WHERE request_id = ?
-//     `, [requestId]);
-
-//     res.status(201).json({ message: 'Application submitted' });
-//   } catch (error) {
-//     console.error('SQL Error:', error);
-//     res.status(500).json({ error: 'Failed to apply for walk' });
-//   }
-// });
-
+//q16
 router.post('/:walkId/apply', async (req, res) => {
   const walkerId = req.session.user?.user_id;
   const walkId = req.params.walkId;
