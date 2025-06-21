@@ -139,6 +139,6 @@ app.listen(3001, () => {
     console.log('Server running on http://localhost:3001');
 });
 
-//was working until I switched to different folder and 
+//was working until I switched to different folder and, after running npm start in part2, suddenly part1 can no longer GET
 
 module.exports = app;
