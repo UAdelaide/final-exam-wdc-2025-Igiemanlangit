@@ -3,6 +3,9 @@ const path = require('path');
 require('dotenv').config();
 
 //added  start --------------------------------------------------------------------------------------------------------------
+const session = require('express-session'); //q16
+
+
 const pool = require('./models/db');
 //added  end ----------------------------------------------------------------------------------------------------------------
 const app = express();
