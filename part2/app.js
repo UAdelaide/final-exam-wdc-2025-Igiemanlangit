@@ -6,7 +6,7 @@ require('dotenv').config();
 const session = require('express-session'); //q16
 
 app.use(session({ //q16
-    secret: 'your-secret-key', // choose a strong secret
+    secret: '', // choose a strong secret
     resave: false,
     saveUninitialized: false,
     cookie: {
