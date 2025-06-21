@@ -1,11 +1,10 @@
 const express = require('express');
 const path = require('path');
-
-const cookieParser = require('cookie-parser'); //q16
-
-require('dotenv').config();
-//added  start --------------------------------------------------------------------------------------------------------------
 const session = require('express-session'); //q16
+const cookieParser = require('cookie-parser'); //q16
+require('dotenv').config();
+
+//added  start --------------------------------------------------------------------------------------------------------------
 const pool = require('./models/db');
 
 const app = express();
