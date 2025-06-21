@@ -59,8 +59,6 @@ app.post('/api/login', async(req,res) => {
         username: user.username
       }; //q16
 
-
-    const user = users[0];
     res.json({ success: true, role: user.role, user_id: user.user_id });
 });
 
