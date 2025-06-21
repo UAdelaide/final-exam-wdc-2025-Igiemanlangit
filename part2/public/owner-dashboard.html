@@ -217,13 +217,22 @@
   <!-- logout function -->
   <script>
     function logOut() {
+      // Tell the backend to clear the cookie and session
+      fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'include'
+      })
+      .then(() => {
 
-      //clears any local/session storage if used
-      localStorage.clear();
+        localStorage.clear();
 
-      //redirects user to index.html
-      window.location.href = "index.html"
-
+        
+        window.location.href = "index.html";
+      })
+      .catch(err => {
+        console.error("Logout failed:", err);
+        alert("Logout failed. Please try again.");
+      });
     }
   </script>
 
