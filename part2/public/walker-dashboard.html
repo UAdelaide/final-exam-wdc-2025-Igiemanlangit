@@ -121,17 +121,26 @@
 
 
 <!-- logout function -->
-  <script>
-    function logOut() {
+<script>
+  function logOut() {
+    // Tell the backend to clear the cookie and session
+    fetch('/api/users/logout', {
+      method: 'POST',
+      credentials: 'include'
+    })
+    .then(() => {
 
-      //clears any local/session storage if used
       localStorage.clear();
 
-      //redirects user to index.html
-      window.location.href = "index.html"
 
-    }
-  </script>
+      window.location.href = "index.html";
+    })
+    .catch(err => {
+      console.error("Logout failed:", err);
+      alert("Logout failed. Please try again.");
+    });
+  }
+</script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
