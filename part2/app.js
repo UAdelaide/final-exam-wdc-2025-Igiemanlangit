@@ -4,6 +4,7 @@ require('dotenv').config();
 
 //added  start --------------------------------------------------------------------------------------------------------------
 const session = require('express-session'); //q16
+const pool = require('./models/db');
 
 app.use(session({ //q16
     secret: 'secret',
@@ -16,7 +17,7 @@ app.use(session({ //q16
   }));
 
 
-const pool = require('./models/db');
+
 //added  end ----------------------------------------------------------------------------------------------------------------
 const app = express();
 
