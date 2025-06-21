@@ -53,18 +53,6 @@ app.post('/api/login', async(req,res) => {
 //     res.json(dogs);
 // });
 
-//logout function
-router.post('/logout', (req, res) => {
-    res.clearCookie('connect.sid');
-    req.session.destroy(err => {
-      if (err) {
-        console.error("Session destruction failed:", err);
-        return res.status(500).json({ error: 'Logout failed' });
-      }
-      res.sendStatus(200);
-    });
-  });
-
 //added  end ----------------------------------------------------------------------------------------------------------------
 
 // Export the app instead of listening here
