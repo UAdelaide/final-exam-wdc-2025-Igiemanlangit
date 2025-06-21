@@ -61,7 +61,7 @@
               credentials: 'include'
             });
 
-            if(!res.ok) throw
+            if(!res.ok) throw new Error('user is not logged in')
 
           }
         }
