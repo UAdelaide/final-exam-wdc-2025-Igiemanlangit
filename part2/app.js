@@ -6,6 +6,8 @@ require('dotenv').config();
 const session = require('express-session'); //q16
 const pool = require('./models/db');
 
+const app = express();
+
 app.use(session({ //q16
     secret: 'secret',
     resave: false,
@@ -16,7 +18,7 @@ app.use(session({ //q16
     }
   }));
 //added  end ----------------------------------------------------------------------------------------------------------------
-const app = express();
+
 
 // Middleware
 app.use(express.json());
