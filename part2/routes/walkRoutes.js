@@ -44,7 +44,7 @@ router.post('/apply/:requestId', async (req, res) => {
     return res.status(401).json({ success: false, error: "Not logged in" });
   }
 
-  const conn = await pool.getConnection();
+  const conn = await db.getConnection();
   try {
     await conn.query(
       `INSERT INTO WalkApplications (request_id, walker_id)
