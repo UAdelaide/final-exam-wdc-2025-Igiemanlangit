@@ -59,4 +59,18 @@ router.post('/:id/apply', async (req, res) => {
   }
 });
 
+router.post('/:walkId/apply', async (req, res) => {
+  const walkerId = req.session.user?.user_id;
+  const walkId = req.params.walkId;
+
+  if (!walkerId) return res.status(401).json({ error: 'Unauthorized' });
+
+  try {
+    await db.query(`UPDATE Walks SET walker_id = ? WHERE walk_id = ?`, [walkerId, walkId]);
+    res.json({ message: 'Successfully applied to walk' });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to apply to walk' });
+  }
+});
+
 module.exports = router;
