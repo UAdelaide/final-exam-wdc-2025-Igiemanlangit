@@ -5,6 +5,16 @@ require('dotenv').config();
 //added  start --------------------------------------------------------------------------------------------------------------
 const session = require('express-session'); //q16
 
+app.use(session({ //q16
+    secret: 'your-secret-key', // choose a strong secret
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 3600000 // 1 hour
+    }
+  }));
+
 
 const pool = require('./models/db');
 //added  end ----------------------------------------------------------------------------------------------------------------
