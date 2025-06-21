@@ -14,7 +14,7 @@ app.use(session({ //q16
     saveUninitialized: false,
     cookie: {
       httpOnly: true,
-      maxAge: 3600000 // 1 hour
+      maxAge: 3600000
     }
   }));
 //added  end ----------------------------------------------------------------------------------------------------------------
