@@ -140,5 +140,6 @@ app.listen(3001, () => {
 });
 
 //was working until I switched to different folder and, after running npm start in part2, suddenly part1 can no longer GET
+//get back after doing part2
 
 module.exports = app;
