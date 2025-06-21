@@ -52,6 +52,13 @@ app.post('/api/login', async(req,res) => {
         return res.json({success:false, message: "doesnt exists in database"});
     }
 
+    req.session.user = {
+        user_id: user.user_id,
+        role: user.role,
+        username: user.username
+      };
+
+
     const user = users[0];
     res.json({ success: true, role: user.role, user_id: user.user_id });
 });
