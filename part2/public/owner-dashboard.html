@@ -190,16 +190,16 @@
           console.log("userId from localStorage:", localStorage.getItem("userId"));
           loadWalks();
 
-          //added
-          try {
-            const res = await fetch(`/api/users/dogs/${userId}`);
-            const dogs = await res.json();
-            myDogs.value = dogs;
-          } catch (err) {
-            console.error('Failed to fetch dogs:', err);
-            error.value = 'Could not load dogs';
-          }
-        });
+            //added
+            try {
+              const res = await fetch(`/api/users/dogs/${userId}`);
+              const dogs = await res.json();
+              myDogs.value = dogs;
+            } catch (err) {
+              console.error('Failed to fetch dogs:', err);
+              error.value = 'Could not load dogs';
+            }
+          });
 
 
         return {
