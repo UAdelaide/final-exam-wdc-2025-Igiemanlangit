@@ -145,38 +145,38 @@
         }
 
         async function submitWalkRequest() {
-          console.log('Selected dog: ', selectedDogID.value);
-          if (!selectedDogID.value) {
-              throw new Error('Select a Dog');
+          console.log('Selected dog: ', form.value.dog_id);
+          if (!form.value.dog_id) {
+            throw new Error('Select a Dog');
           }
-          // Stores data in terms of the selected id values
+
           const walkReqData = {
-              dog_id: selectedDogID.value,
-              requested_time: form.value.requested_time,
-              duration_minutes: form.value.duration_minutes,
-              location: form.value.location
-          }
+            dog_id: form.value.dog_id,
+            requested_time: form.value.requested_time,
+            duration_minutes: form.value.duration_minutes,
+            location: form.value.location
+          };
+
           console.log('Walk Req Data: ', walkReqData);
+
           try {
             const res = await fetch('/api/walks', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              // stringifies the walk request data table
               body: JSON.stringify(walkReqData)
             });
             const result = await res.json();
 
             if (!res.ok) throw new Error(result.error || 'Error submitting walk request');
 
-            message.value = result.message;
+            message.value = result.message || 'Walk request submitted successfully!';
             error.value = '';
             form.value = {
+              dog_id: '', // reset dog selection
               requested_time: '',
               duration_minutes: '',
               location: ''
             };
-            // reset selectedDogID value
-            selectedDogID.value = '';
             loadWalks();
           } catch (err) {
             error.value = err.message;
@@ -184,7 +184,8 @@
           }
         }
 
-        onMounted(async() => {
+
+        onMounted(async () => {
           console.log("userId from localStorage:", userId);
           console.log("userId from localStorage:", localStorage.getItem("userId"));
           loadWalks();
