@@ -3,6 +3,16 @@ const path = require('path');
 require('dotenv').config();
 
 //added  start --------------------------------------------------------------------------------------------------------------
+const session = require('express-session');
+
+app.use(session({
+    secret: 'yourSecretHere', // replace with a strong secret
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // secure: true only for HTTPS
+}));
+
+
 const pool = require('./models/db');
 //added  end ----------------------------------------------------------------------------------------------------------------
 const app = express();
