@@ -36,23 +36,32 @@ router.post('/', async (req, res) => {
 });
 
 //q16
-router.post('/:walkId/apply', async (req, res) => {
+router.post('/apply/:requestId', async (req, res) => {
   const walkerId = req.session.user?.user_id;
-  const walkId = req.params.walkId;
+  const requestId = req.params.requestId;
 
-  if (!walkerId) return res.status(401).json({ error: 'Unauthorized' });
+  if (!walkerId) {
+    return res.status(401).json({ success: false, error: "Not logged in" });
+  }
 
+  const conn = await pool.getConnection();
   try {
-    await db.query(`
-      UPDATE WalkRequests
-      SET walker_id = ?
-      WHERE request_id = ?
-    `, [walkerId, walkId]);
+    await conn.query(
+      `INSERT INTO WalkApplications (request_id, walker_id)
+       VALUES (?, ?)`,
+      [requestId, walkerId]
+    );
 
-    res.json({ message: 'Successfully applied to walk' });
-  } catch (error) {
-    console.error('Failed to apply to walk:', error);
-    res.status(500).json({ error: 'Failed to apply to walk' });
+    res.json({ success: true, message: "Applied to walk!" });
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      res.status(400).json({ success: false, message: "Already applied to this walk." });
+    } else {
+      console.error("Apply error:", err);
+      res.status(500).json({ success: false, error: "Server error" });
+    }
+  } finally {
+    conn.release();
   }
 });
 
