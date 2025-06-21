@@ -34,34 +34,39 @@ app.use('/api/users', userRoutes);
 //added  start --------------------------------------------------------------------------------------------------------------
 
 //login POST route
-app.post('/api/login', async(req,res) => {
-
-    //get username and password from webpage
+app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
-    //ask mysql connection pool to give us connection to talk to database
     const conn = await pool.getConnection();
 
-    //checks if theres a user with username and password matching
-    const [users] = await conn.query(
-        'SELECT * FROM Users WHERE username = ? AND password_hash = ?', [username,password]
-    );
-    conn.release();
+    try {
+      // Find user by username and password
+      const [users] = await conn.query(
+        'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
+        [username, password]
+      );
 
-    if (users.length === 0) {
-        return res.json({success:false, message: "doesnt exists in database"});
-    }
+      if (users.length === 0) {
+        return res.json({ success: false, message: "Username or password incorrect" });
+      }
 
-    const user = users[0];
+      const user = users[0];
 
-    req.session.user = {
+      // Save user session
+      req.session.user = {
         user_id: user.user_id,
         role: user.role,
         username: user.username
-      }; //q16
+      };
 
-    res.json({ success: true, role: user.role, user_id: user.user_id });
-});
+      res.json({ success: true, role: user.role, user_id: user.user_id });
+    } catch (err) {
+      console.error("Login error:", err);
+      res.status(500).json({ success: false, message: "Server error" });
+    } finally {
+      conn.release();
+    }
+  });
 
 //added  end ----------------------------------------------------------------------------------------------------------------
 
