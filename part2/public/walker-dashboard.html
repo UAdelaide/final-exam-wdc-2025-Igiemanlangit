@@ -66,6 +66,7 @@
             const user = await res.json();
             walkerId.value = user.user_id;
           } catch (err) {
+            console.error("failed to get current user", err);
             
           }
         }
