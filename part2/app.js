@@ -34,31 +34,28 @@ app.use('/api/users', userRoutes);
 //added  start --------------------------------------------------------------------------------------------------------------
 
 //login POST route
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', async(req,res) => {
     const { username, password } = req.body;
-    let conn;
 
-    try {
-      conn = await pool.getConnection();
+    const conn = await pool.getConnection();
+    const [users] = await conn.query(
+      'SELECT * FROM Users WHERE username = ? AND password_hash = ?', [username, password]
+    );
+    conn.release();
 
-      const [users] = await conn.query(
-        'SELECT * FROM Users WHERE username = ? AND password_hash = ?',
-        [username, password]
-      );
+    if (users.length === 0) {
+      return res.json({ success: false, message: "Username or password is incorrect." });
+    }
 
-      if (users.length === 0) {
-        return res.json({ success: false, message: "Invalid username or password." });
-      }
+    const user = users[0];
 
-      const user = users[0];
+    req.session.user = {
+      user_id: user.user_id,
+      role: user.role,
+      username: user.username
+    };
 
-      req.session.user = {
-        user_id: user.user_id,
-        role: user.role,
-        username: user.username
-      };
-
-      res.json({ success: true, role: user.role, user_id: user.user_id });
+    res.json({ success: true, role: user.role, user_id: user.user_id });
 
     } catch (err) {
       console.error("Login error:", err);
