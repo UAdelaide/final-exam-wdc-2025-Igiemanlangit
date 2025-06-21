@@ -36,7 +36,7 @@ router.get('/me', (req, res) => {
   res.json(req.session.user);
 });
 
-//
+//q15
 router.get('/dogs/:ownerId', async (req, res) => {
   const ownerId = req.params.ownerId;
 
