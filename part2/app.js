@@ -6,7 +6,6 @@ require('dotenv').config();
 
 //added  start --------------------------------------------------------------------------------------------------------------
 const pool = require('./models/db');
-
 const app = express();
 
 app.use(session({ //q16
