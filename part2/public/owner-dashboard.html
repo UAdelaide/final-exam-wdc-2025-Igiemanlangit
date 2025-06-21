@@ -218,7 +218,7 @@
   <script>
     function logOut() {
       // Tell the backend to clear the cookie and session
-      fetch('/api/logout', {
+      fetch('/api/users/logout', {
         method: 'POST',
         credentials: 'include'
       })
@@ -226,7 +226,7 @@
 
         localStorage.clear();
 
-        
+
         window.location.href = "index.html";
       })
       .catch(err => {
